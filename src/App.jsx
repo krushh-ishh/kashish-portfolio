@@ -83,7 +83,7 @@ export default function App() {
 
         <div className="flex justify-center">
           <img
-            src="assets/profile.png"
+            src="/assets/profile.png"
             alt="Kashish"
             className="w-64 h-64  object-cover shadow-lg"
           />
