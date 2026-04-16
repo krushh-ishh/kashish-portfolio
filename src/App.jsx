@@ -15,7 +15,10 @@ export default function App() {
     <div className={theme + " min-h-screen font-sans"}>
       {/* Navbar */}
       <nav className="flex justify-between items-center px-8 py-5 shadow-sm">
-        <h1 className="text-2xl font-bold tracking-wide">Krushh Ishh</h1>
+        <h1 className="text-2xl font-bold tracking-wide"> <span style={{ fontFamily: "BrickSans" }} >:)&nbsp;&nbsp;</span>&nbsp;Krushh Ishh</h1>
+        {/* <h1 className="text-3xl" style={{ fontFamily: "BrickSans" }}>
+          :)  Krushh Ishh
+        </h1> */}
         <div className="space-x-6 hidden md:block">
           <a href="#home">Home</a>
           <a href="#skills">Skills</a>
@@ -80,7 +83,7 @@ export default function App() {
 
         <div className="flex justify-center">
           <img
-            src="/profile.png"
+            src="assets/profile.png"
             alt="Kashish"
             className="w-64 h-64  object-cover shadow-lg"
           />

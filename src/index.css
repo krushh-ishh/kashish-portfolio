@@ -1,4 +1,8 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+    font-family: 'BrickSans';
+    src: url('/fonts/NTBrickSans.ttf') format('truetype');
+}
