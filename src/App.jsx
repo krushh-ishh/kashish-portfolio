@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 
 export default function App() {
-  const [darkMode, setDarkMode] = useState(false);
+  const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-  const theme = darkMode
+  const theme = prefersDark
     ? "bg-[#0f172a] text-white"
     : "bg-[#f8fafc] text-gray-900";
 
-  const card = darkMode
+  const card = prefersDark
     ? "bg-[#1e293b]"
     : "bg-white";
 
@@ -23,12 +23,7 @@ export default function App() {
           <a href="#education">Education</a>
           <a href="#contact">Contact</a>
         </div>
-        <button
-          onClick={() => setDarkMode(!darkMode)}
-          className="border px-3 py-1 rounded-lg"
-        >
-          {darkMode ? "Light" : "Dark"}
-        </button>
+        
       </nav>
 
       {/* HERO SECTION */}
@@ -68,7 +63,7 @@ export default function App() {
         </div>
 
         <div className="flex justify-center">
-        <img src="src/assets/profile.png" className="w-64 h-64 rounded-2xl object-cover" />
+          <div className="w-64 h-64 rounded-2xl bg-gray-300 shadow-lg" />
         </div>
       </section>
 
@@ -93,31 +88,81 @@ export default function App() {
 
       {/* EXPERIENCE */}
       <section id="experience" className="px-10 py-16">
-        <h2 className="text-3xl font-bold mb-10">Experience</h2>
+        <h2 className="text-3xl font-bold mb-12 text-center">My Experience</h2>
 
-        <div className="space-y-6">
-          <div className={card + " p-6 rounded-2xl shadow"}>
-            <h3 className="text-xl font-semibold">TCS</h3>
-            <p className="text-sm text-gray-500 mb-2">
-              Java Full Stack Developer
-            </p>
-            <p>
-              Upgraded 30+ microservices to Java 17, implemented Ping
-              Federate-based security, handled production incidents and ensured
-              seamless deployments.
-            </p>
-          </div>
+        {/** state for expand/collapse */}
+        {(() => {
+          const [openIndex, setOpenIndex] = React.useState(null);
 
-          <div className={card + " p-6 rounded-2xl shadow"}>
-            <h3 className="text-xl font-semibold">Banking Client Project</h3>
-            <p className="text-sm text-gray-500 mb-2">Full Stack Developer</p>
-            <p>
-              Migrated Vue 2 to Vue 3 using Composition API, improved UI
-              performance, integrated backend APIs and enhanced user
-              experience.
-            </p>
-          </div>
-        </div>
+          const toggle = (i) => {
+            setOpenIndex(openIndex === i ? null : i);
+          };
+
+          const experiences = [
+            {
+              title: "TCS",
+              role: "Java Full Stack Developer | 2021 - Present",
+              short: "Worked on microservices, security and production deployments.",
+              details: [
+                "Upgraded 30+ microservices and BFF to Java 17 ensuring compatibility.",
+                "Implemented security using Ping Federate and OAuth flows.",
+                "Handled P1 production incidents and ensured quick resolution.",
+                "Supported new joiners and contributed beyond core responsibilities.",
+                "Worked on banking domain applications and system integrations."
+              ]
+            },
+            {
+              title: "Banking Client Project",
+              role: "Full Stack Developer",
+              short: "Worked on UI migration and performance improvements.",
+              details: [
+                "Migrated Vue 2 application to Vue 3 using Composition API.",
+                "Rewrote frontend components while maintaining existing functionality.",
+                "Integrated backend APIs and improved application performance.",
+                "Updated test cases and migrated from Jest to Vitest.",
+                "Ensured smooth UI/UX with bilingual support."
+              ]
+            }
+          ];
+
+          return (
+            <div className="relative border-l-2 border-blue-500 ml-4">
+              {experiences.map((exp, i) => (
+                <div key={i} className="mb-10 ml-6">
+                  <span className="absolute -left-3 flex items-center justify-center w-6 h-6 bg-blue-500 rounded-full"></span>
+
+                  <div
+                    onClick={() => toggle(i)}
+                    className={card + " p-6 rounded-xl shadow cursor-pointer transition-all duration-300"}
+                  >
+                    <div className="flex justify-between items-center">
+                      <h3 className="text-lg font-semibold">{exp.title}</h3>
+                      <span className="text-sm text-blue-500">
+                        {openIndex === i ? "▲" : "▼"}
+                      </span>
+                    </div>
+                    <p className="text-sm text-gray-500 mb-2">{exp.role}</p>
+
+                    <p className="text-sm text-gray-500 mb-3">
+                      {exp.short}
+                      <span className="text-blue-500 ml-1">
+                        {openIndex === i ? " show less" : "...read more"}
+                      </span>
+                    </p>
+
+                    {openIndex === i && (
+                      <ul className="list-disc pl-5 text-sm text-gray-500 space-y-2">
+                        {exp.details.map((d, idx) => (
+                          <li key={idx}>{d}</li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          );
+        })()}
       </section>
 
       {/* EDUCATION */}
