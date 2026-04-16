@@ -15,15 +15,21 @@ export default function App() {
     <div className={theme + " min-h-screen font-sans"}>
       {/* Navbar */}
       <nav className="flex justify-between items-center px-8 py-5 shadow-sm">
-        <h1 className="text-2xl font-bold tracking-wide">Kashish</h1>
+        <h1 className="text-2xl font-bold tracking-wide">Krushh Ishh</h1>
         <div className="space-x-6 hidden md:block">
           <a href="#home">Home</a>
           <a href="#skills">Skills</a>
           <a href="#experience">Experience</a>
           <a href="#education">Education</a>
           <a href="#contact">Contact</a>
+          <a
+            href="mailto:kashish81099@gmail.com?subject=Opportunity&body=Hi Kashish,%0D%0A"
+            className="bg-blue-500 text-white px-6 py-2 rounded-xl"
+          >
+            Mail Me
+          </a>
         </div>
-        
+
       </nav>
 
       {/* HERO SECTION */}
@@ -46,24 +52,38 @@ export default function App() {
           </p>
 
           <div className="flex gap-4 mb-6">
-            <a href="#" className="underline">
+            <a href="https://www.linkedin.com/in/kashish-6186a421b/" className="underline" target="_blank">
               LinkedIn
             </a>
-            <a href="#" className="underline">
+            <a href="https://github.com/krushh-ishh" className="underline" target="_blank">
               GitHub
             </a>
-            <a href="#" className="underline">
+            <a href="https://leetcode.com/u/krushh_ishh/" className="underline" target="_blank">
               LeetCode
             </a>
+            <a href="https://www.naukri.com/code360/profile/krushh_ishh" className="underline" target="_blank">
+              Code360
+            </a>
+
           </div>
 
           <button className="bg-blue-500 text-white px-6 py-2 rounded-xl shadow">
-            Download Resume
+            <a
+              href="/Kashish-Java-full-stack-dev.pdf"
+              download
+              className="bg-blue-500 text-white px-6 py-2 rounded-xl"
+            >
+              Download Resume
+            </a>
           </button>
         </div>
 
         <div className="flex justify-center">
-          <div className="w-64 h-64 rounded-2xl bg-gray-300 shadow-lg" />
+          <img
+            src="src/assets/profile.png"
+            alt="Kashish"
+            className="w-64 h-64  object-cover shadow-lg"
+          />
         </div>
       </section>
 
@@ -181,9 +201,44 @@ export default function App() {
       <section id="contact" className="px-10 py-16">
         <h2 className="text-3xl font-bold mb-6">Contact</h2>
 
-        <div className={card + " p-6 rounded-2xl shadow"}>
-          <p>Email: your@email.com</p>
-          <p>Phone: +91-XXXXXXXXXX</p>
+        <div className={card + " p-6 rounded-xl shadow max-w-xl"}>
+          <form
+            action="mailto:kashish81099@gmail.com"
+            method="POST"
+            encType="text/plain"
+            className="flex flex-col gap-4"
+          >
+            <input
+              type="text"
+              name="name"
+              placeholder="Your Name"
+              required
+              className="p-3 border rounded-lg bg-transparent"
+            />
+
+            <input
+              type="email"
+              name="email"
+              placeholder="Your Email"
+              required
+              className="p-3 border rounded-lg bg-transparent"
+            />
+
+            <textarea
+              name="message"
+              placeholder="Your Message"
+              rows="4"
+              required
+              className="p-3 border rounded-lg bg-transparent"
+            />
+
+            <button
+              type="submit"
+              className="bg-blue-500 text-white px-6 py-2 rounded-xl"
+            >
+              Send Message
+            </button>
+          </form>
         </div>
       </section>
     </div>
