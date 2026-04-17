@@ -2,6 +2,17 @@ import React, { useState } from "react";
 
 export default function App() {
   const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const achievements = [
+    {
+      title: "Microsoft Azure Fundamentals - AZ 900 Certification.",
+      href: "/certificates/azure-az-900.pdf",
+    },
+    {
+      title: "Recognized for performance and contributions during my work in my current organization.",
+      href: "/certificates/current-organization-recognition.pdf",
+    },
+  ];
 
   const theme = prefersDark
     ? "bg-[#0f172a] text-white"
@@ -11,28 +22,74 @@ export default function App() {
     ? "bg-[#1e293b]"
     : "bg-white";
 
+  const navLinks = [
+    { label: "Home", href: "#home" },
+    { label: "Skills", href: "#skills" },
+    { label: "Experience", href: "#experience" },
+    { label: "Education", href: "#education" },
+    { label: "Contact", href: "#contact" },
+  ];
+
   return (
     <div className={theme + " min-h-screen font-sans"}>
       {/* Navbar */}
-      <nav className="flex justify-between items-center px-8 py-5 shadow-sm">
-        <h1 className="text-2xl font-bold tracking-wide"> <span style={{ fontFamily: "BrickSans" }} >:)&nbsp;&nbsp;</span>&nbsp;Krushh Ishh</h1>
-        {/* <h1 className="text-3xl" style={{ fontFamily: "BrickSans" }}>
+      <nav className="px-6 py-5 shadow-sm md:px-8">
+        <div className="flex items-center justify-between gap-4">
+          <h1 className="text-xl font-bold tracking-wide md:text-2xl"> <span style={{ fontFamily: "BrickSans" }} >:)&nbsp;&nbsp;</span>&nbsp;Krushh Ishh</h1>
+          {/* <h1 className="text-3xl" style={{ fontFamily: "BrickSans" }}>
           :)  Krushh Ishh
         </h1> */}
-        <div className="space-x-6 hidden md:block">
-          <a href="#home">Home</a>
-          <a href="#skills">Skills</a>
-          <a href="#experience">Experience</a>
-          <a href="#education">Education</a>
-          <a href="#contact">Contact</a>
-          <a
-            href="mailto:kashish81099@gmail.com?subject=Opportunity&body=Hi Kashish,%0D%0A"
-            className="bg-blue-500 text-white px-6 py-2 rounded-xl"
+          <button
+            type="button"
+            aria-label="Toggle navigation menu"
+            aria-expanded={isMobileMenuOpen}
+            onClick={() => setIsMobileMenuOpen((open) => !open)}
+            className="flex h-11 w-11 items-center justify-center rounded-xl md:hidden"
           >
-            Mail Me
-          </a>
-        </div>
+            <span className="space-y-1.5">
+              <span className="block h-0.5 w-5 bg-current"></span>
+              <span className="block h-0.5 w-5 bg-current"></span>
+              <span className="block h-0.5 w-5 bg-current"></span>
+            </span>
+          </button>
 
+          <div className="hidden items-center gap-6 md:flex">
+            {navLinks.map((link) => (
+              <a key={link.href} href={link.href}>
+                {link.label}
+              </a>
+            ))}
+            <a
+              href="mailto:kashish81099@gmail.com?subject=Opportunity&body=Hi Kashish,%0D%0A"
+              className="bg-blue-500 text-white px-6 py-2 rounded-xl"
+            >
+              Mail Me
+            </a>
+          </div>
+        </div>
+        {isMobileMenuOpen && (
+          <div className={card + " mt-4 rounded-2xl p-4 shadow md:hidden"}>
+            <div className="flex flex-col gap-4">
+              {navLinks.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="text-sm"
+                >
+                  {link.label}
+                </a>
+              ))}
+              <a
+                href="mailto:kashish81099@gmail.com?subject=Opportunity&body=Hi Kashish,%0D%0A"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="bg-blue-500 text-center text-white px-6 py-2 rounded-xl"
+              >
+                Mail Me
+              </a>
+            </div>
+          </div>
+        )}
       </nav>
 
       {/* HERO SECTION */}
@@ -49,9 +106,14 @@ export default function App() {
           </h2>
           <h3 className="text-2xl mb-4">Java Full Stack Developer</h3>
 
+          <p className="mb-2 text-gray-500">
+            I build things that work — and then make them better.<br></br>
+          </p>
           <p className="mb-6 text-gray-500">
-            4+ years of experience building scalable microservices and modern
-            web applications using Java, Spring Boot, Angular, React & Vue.
+            Java Full Stack Developer experienced in microservices,
+            cloud platforms, and modern frontend frameworks.
+            From creating applications from scratch to debugging tricky issues, upgrading systems,
+            and mentoring teammates, I bring a mix of curiosity, ownership, and reliability to everything I do.
           </p>
 
           <div className="flex gap-4 mb-6">
@@ -95,7 +157,7 @@ export default function App() {
         <h2 className="text-3xl font-bold mb-10">What I Do</h2>
 
         <div className="grid md:grid-cols-3 gap-6">
-          {["Java & Spring Boot", "Frontend (React/Vue)", "Microservices", "Cloud (Azure)", "Security (OAuth/Ping)", "Testing & CI/CD"].map((skill, i) => (
+          {["Java & Spring Boot", "Frontend (React/Angular/Vue)", "Microservices", "Cloud (Azure)", "Security", "Testing & CI/CD"].map((skill, i) => (
             <div
               key={i}
               className={card + " p-6 rounded-2xl shadow hover:scale-105 transition"}
@@ -124,26 +186,42 @@ export default function App() {
           const experiences = [
             {
               title: "TCS",
-              role: "Java Full Stack Developer | 2021 - Present",
+              role: "Java Full Stack Developer | ABN Amro Bank | Nov 2022 - Present",
               short: "Worked on microservices, security and production deployments.",
               details: [
                 "Upgraded 30+ microservices and BFF to Java 17 ensuring compatibility.",
                 "Implemented security using Ping Federate and OAuth flows.",
                 "Handled P1 production incidents and ensured quick resolution.",
                 "Supported new joiners and contributed beyond core responsibilities.",
-                "Worked on banking domain applications and system integrations."
-              ]
-            },
-            {
-              title: "Banking Client Project",
-              role: "Full Stack Developer",
-              short: "Worked on UI migration and performance improvements.",
-              details: [
-                "Migrated Vue 2 application to Vue 3 using Composition API.",
-                "Rewrote frontend components while maintaining existing functionality.",
+                "Worked on banking domain applications and system integrations.",
+                "Migrated Vue 2 application to Vue 3",
                 "Integrated backend APIs and improved application performance.",
                 "Updated test cases and migrated from Jest to Vitest.",
                 "Ensured smooth UI/UX with bilingual support."
+              ]
+            },
+            {
+              title: "Nagarro",
+              role: "Software Engineer | July 2022 - Nov 2022",
+              short: "Contributed to web development with a focus on Java, APIs, and delivery quality.",
+              details: [
+                "Built and enhanced application features using Java and Spring Boot for client-facing business requirements.",
+                "Worked on REST API integration and backend logic to support seamless communication across services.",
+                "Collaborated with cross-functional teams to understand requirements, troubleshoot issues, and deliver reliable releases.",
+                "Improved code quality through debugging, testing, and maintaining clean, reusable implementation patterns.",
+                "Supported end-to-end development tasks across backend and frontend touchpoints in an agile delivery environment."
+              ]
+            },
+            {
+              title: "iDigital Web",
+              role: "Intern Android Developer | Nov 2021 - May 2022",
+              short: "Built Android features and improved mobile app usability during my internship.",
+              details: [
+                "Developed Android application features using Java and Android Studio based on business requirements.",
+                "Created and refined mobile UI screens with a focus on usability, responsiveness, and consistent user experience.",
+                "Integrated APIs and handled data flow between the mobile app and backend services.",
+                "Fixed bugs, optimized existing functionality, and supported testing to improve application stability.",
+                "Worked closely with senior developers to learn mobile development practices and deliver assigned modules on time."
               ]
             }
           ];
@@ -160,9 +238,9 @@ export default function App() {
                   >
                     <div className="flex justify-between items-center">
                       <h3 className="text-lg font-semibold">{exp.title}</h3>
-                      <span className="text-sm text-blue-500">
+                      {/* <span className="text-sm text-blue-500">
                         {openIndex === i ? "▲" : "▼"}
-                      </span>
+                      </span> */}
                     </div>
                     <p className="text-sm text-gray-500 mb-2">{exp.role}</p>
 
@@ -190,13 +268,35 @@ export default function App() {
 
       {/* EDUCATION */}
       <section id="education" className="px-10 py-16">
-        <h2 className="text-3xl font-bold mb-6">Education & Achievements</h2>
+        <h2 className="text-3xl font-bold mb-10">Education & Certifications</h2>
 
-        <div className={card + " p-6 rounded-2xl shadow"}>
-          <p>Bachelor’s Degree in Computer Science</p>
-          <p className="text-gray-500 mt-2">
-            Recognized for performance and contributions at TCS.
-          </p>
+        <div className="grid md:grid-cols-2 gap-6">
+          <div className={card + " p-6 rounded-2xl shadow"}>
+            <h3 className="text-xl font-semibold mb-2">Academic Background</h3>
+            <p>Master's Degree in Computer Science</p>
+            <p className="text-gray-500 mt-2">
+              MCA | Institute of Engineering and Technology, Lucknow | 2020 - 2022
+            </p>
+          </div>
+
+          <div className={card + " p-6 rounded-2xl shadow"}>
+            <h3 className="text-xl font-semibold mb-3">Certifications</h3>
+            <ul className="list-disc pl-5 text-gray-500 space-y-2">
+              {achievements.map((achievement, index) => (
+                <li key={index}>
+                  {achievement.title}{" "}
+                  <a
+                    href={achievement.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-xs text-blue-500 underline underline-offset-2"
+                  >
+                    Preview
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </section>
 
