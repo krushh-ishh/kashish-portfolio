@@ -51,7 +51,7 @@ export default function App() {
 
           <p className="mb-6 text-gray-500">
             4+ years of experience building scalable microservices and modern
-            web applications using Java, Spring Boot, React & Vue.
+            web applications using Java, Spring Boot, Angular, React & Vue.
           </p>
 
           <div className="flex gap-4 mb-6">
