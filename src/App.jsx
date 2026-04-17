@@ -206,7 +206,7 @@ export default function App() {
 
         <div className={card + " p-6 rounded-xl shadow max-w-xl"}>
           <form
-            action="mailto:kashish81099@gmail.com"
+            action="mailto:kashish81099@gmail.com?subject=Opportunity"
             method="POST"
             encType="text/plain"
             className="flex flex-col gap-4"
