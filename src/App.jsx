@@ -117,7 +117,7 @@ export default function App() {
           </p>
 
           <div className="flex gap-4 mb-6">
-            <a href="https://www.linkedin.com/in/kashish-6186a421b/" className="underline" target="_blank">
+            <a href="https://www.linkedin.com/in/kashish-6186a421b/details/recommendations/" className="underline" target="_blank">
               LinkedIn
             </a>
             <a href="https://github.com/krushh-ishh" className="underline" target="_blank">
@@ -144,11 +144,16 @@ export default function App() {
         </div>
 
         <div className="flex justify-center">
-          <img
-            src="/assets/profile.png"
-            alt="Kashish"
-            className="w-64 h-64  object-cover shadow-lg"
-          />
+          <div className="relative">
+            <div className="absolute inset-0 translate-x-1 translate-y-2 rotate-[2deg] bg-[rgb(217_224_232)]" />
+            <div className="relative border border-[rgb(217_224_232)] bg-white p-2">
+              <img
+                src="/assets/pfp.jpeg"
+                alt="Kashish"
+                className="h-80 w-64 object-cover"
+              />
+            </div>
+          </div>
         </div>
       </section>
 
