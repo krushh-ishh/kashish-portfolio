@@ -144,7 +144,14 @@ export default function App() {
         </div>
 
         <div className="flex justify-center">
-          <div className="relative">
+          <div className="flex justify-center">
+            <img
+              src="/assets/profile.png"
+              alt="Kashish"
+              className="w-64 h-64  object-cover shadow-lg"
+            />
+          </div>
+          {/* <div className="relative">
             <div className="absolute inset-0 translate-x-1 translate-y-2 rotate-[2deg] bg-[rgb(217_224_232)]" />
             <div className="relative border border-[rgb(217_224_232)] bg-white p-2">
               <img
@@ -153,7 +160,7 @@ export default function App() {
                 className="h-80 w-64 object-cover"
               />
             </div>
-          </div>
+          </div> */}
         </div>
       </section>
 
